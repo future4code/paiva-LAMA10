@@ -1,0 +1,9 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+	"name": "Carlos Daniel",
+	"email": "cadi@lbn.com",
+	"password": "123456",
+   "role":"NORMAL"
+}
