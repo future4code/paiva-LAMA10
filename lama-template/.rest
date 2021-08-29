@@ -2,17 +2,33 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-	"name": "Carlos Daniel",
-	"email": "cadi@lbn.com",
-	"password": "123456",
-   "role":"NORMAL"
+	"name": "Karol Jemp",
+	"email": "jp@lbn.com",
+	"password": "123456gh",
+   "role":"ADMIN"
 }
 
 ###
+# @name login
 POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-	"email": "cadi@lbn.com",
-	"password": "123456"
+	"email": "jp@lbn.com",
+	"password": "123456gh"
 }
+
+
+###
+
+
+POST http://localhost:3003/band/create
+Content-Type: application/json
+Authorization: {{login.response.body.token}}
+
+{
+	"name": "Galáticas",
+	"musicGenre": "Rock",
+	"responsible":"Karol Jemp"
+}
+

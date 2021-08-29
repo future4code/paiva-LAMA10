@@ -2,7 +2,7 @@ export class Band{
     constructor(
         private id: string,
         private name: string,
-        private music_genre: string,
+        private musicGenre: string,
         private responsible: string
     ){}
 
@@ -15,7 +15,7 @@ export class Band{
     }
 
     getMusicGenre(){
-        return this.music_genre;
+        return this.musicGenre;
     }
 
     getResponsible(){
@@ -30,8 +30,8 @@ export class Band{
         this.name = name;
     }
 
-    setMusicGenre(music_genre: string){
-        return this.music_genre = music_genre;
+    setMusicGenre(musicGenre: string){
+        return this.musicGenre = musicGenre;
     }
 
     setResponsible(responsible: string){
@@ -39,14 +39,14 @@ export class Band{
     }
 
     static toBandModel (band: any): Band {
-        return new (band.id, band.name, band.music_genre, band.responsible)
+        return new Band(band.id, band.name, band.musicGenre || band.music_genre, band.responsible)
     }
 }
 
 
 export interface BandInputDTO{
     name: string;
-    music_genre: string;
+    musicGenre: string;
     responsible: string;
 }
 

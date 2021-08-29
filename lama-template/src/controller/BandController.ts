@@ -1,25 +1,34 @@
 import { Request, Response } from "express";
-import { BandInputDTO } from "../model/band";
+import { BandBusiness } from "../business/BandBusiness";
+import { BandDataBase } from "../data/BandDataBase";
+import { BandInputDTO } from "../model/Band";
+import { Authenticator } from "../services/Authenticator";
+import {IdGenerator} from "../services/IdGenerator";
 
 export class BandController{
-    async bandController(
+    async createBandController(
         req: Request,
         res: Response
     ){
         try {
             const input: BandInputDTO = {
                 name: req.body.name,
-                music_genre: req.body.music_genre,
+                musicGenre: req.body.musicGenre,
                 responsible: req.body.responsible
             }
 
-            const userBusiness = new BandBusiness();
-            const token = await bandBusiness.createBand(input);
+            const bandBusiness = new BandBusiness(
+                new BandDataBase,
+                new IdGenerator,
+                new Authenticator
+            );
+
+            const token = await bandBusiness.createBand(input, req.headers.authorization!);
 
             res.status(200).send({ token });
 
         } catch (error) {
-            res.status(400).send({ error: error.message });
+            res.status(error.customErrorCode || 400).send({ error: error.message });
         }
 
     }

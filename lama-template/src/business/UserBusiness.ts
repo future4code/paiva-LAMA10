@@ -6,6 +6,13 @@ import { Authenticator } from "../services/Authenticator";
 
 export class UserBusiness {
 
+    // constructor (
+    //     private userDataBase: UserDatabase,
+    //     private idGenerator: IdGenerator,
+    //     private hashManager: HashManager,
+    //     private authenticator: Authenticator
+    // ){}
+    
     async createUser(user: UserInputDTO) {
 
         const idGenerator = new IdGenerator();
