@@ -2,8 +2,8 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-	"name": "Karol Jemp",
-	"email": "jp@lbn.com",
+	"name": "Luna Liz",
+	"email": "lliz@lbn.com",
 	"password": "123456gh",
    "role":"ADMIN"
 }
@@ -14,7 +14,7 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-	"email": "jp@lbn.com",
+	"email": "lliz@lbn.com",
 	"password": "123456gh"
 }
 
@@ -27,8 +27,14 @@ Content-Type: application/json
 Authorization: {{login.response.body.token}}
 
 {
-	"name": "Galáticas",
-	"musicGenre": "Rock",
-	"responsible":"Karol Jemp"
+	"name": "Overall Lama",
+	"musicGenre": "Eletrobrega",
+	"responsible":"Luna Liz"
 }
+
+
+
+###
+GET http://localhost:3003/band/bandDatails?name=Overall Lama
+Authorization: {{login.response.body.token}}
 

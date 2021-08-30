@@ -1,3 +1,4 @@
+import { NotFoundError } from "../error/NotFoundError";
 import { Band } from "../model/Band";
 import { BaseDatabase } from "./BaseDatabase";
 
@@ -22,10 +23,14 @@ export class BandDataBase extends BaseDatabase{
         
     }
 
-    public async getBandDetails(id: string): Promise<Band>{
+    public async getBandIdOrName(input: string): Promise<Band>{
         const result = await this.getConnection()
         .select("*").from(BandDataBase.TABLE_NAME)
-        .where({id});
+        .where({id: input}).orWhere({name: input});
+
+        if(!result[0]){
+            throw new NotFoundError(`Não tem nenhuma banda com esse ${input}`)
+        }
 
         return Band.toBandModel(result[0])
     }

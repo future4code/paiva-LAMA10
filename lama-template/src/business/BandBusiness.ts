@@ -35,5 +35,14 @@ export class BandBusiness{
         )
 
     }
+
+    async getBandDatails(input: string){
+
+        if(!input){
+            throw new InputError("Informe um id ou um nome de banda válidos")
+        }
+
+        return this.bandDataBase.getBandIdOrName(input)
+    }
         
 }
