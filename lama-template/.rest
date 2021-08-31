@@ -38,3 +38,16 @@ Authorization: {{login.response.body.token}}
 GET http://localhost:3003/band/bandDatails?name=Overall Lama
 Authorization: {{login.response.body.token}}
 
+###
+
+POST http://localhost:3003/show/create
+Content-Type: application/json
+Authorization: {{login.response.body.token}}
+
+{
+	"bandId": "3dd9230c-3a1e-4aab-a207-dd1888217b7d",
+	"weekDay": "SUNDAY",
+	"startTime": 21,
+	"endTime":22
+}
+
