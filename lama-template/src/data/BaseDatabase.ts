@@ -4,6 +4,11 @@ import Knex   from "knex";
 
 export abstract class BaseDatabase {
 
+    protected TABLE_NAME: any = {
+        BAND: "TABELA_BANDAS_LAMA",
+        SHOWS: "TABELA_SHOWS_LAMA"
+    }
+
     private static connection: Knex | null = null;
 
     protected getConnection(): Knex{
