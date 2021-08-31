@@ -88,5 +88,7 @@ export interface ShowOutputDTO{
     bandId: string,
     weekDay: WeekDay,
     startTime: number,
-    endTime: number
+    endTime: number,
+    musicGenre?: string,
+    bandName?:string
 }

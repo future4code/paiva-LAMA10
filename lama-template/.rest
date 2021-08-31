@@ -51,3 +51,7 @@ Authorization: {{login.response.body.token}}
 	"endTime":22
 }
 
+###
+
+GET http://localhost:3003/show/getShowWeek?weekDay=SUNDAY
+Authorization: {{login.response.body.token}}

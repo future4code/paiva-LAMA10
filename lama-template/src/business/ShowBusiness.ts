@@ -5,7 +5,7 @@ import { Authenticator } from './../services/Authenticator';
 import { IdGenerator } from './../services/IdGenerator';
 import { BandDataBase } from './../data/BandDataBase';
 import { ShowDataBase } from './../data/ShowDataBase';
-import { Show, ShowInputDTO } from '../model/Show';
+import { Show, ShowInputDTO, WeekDay } from '../model/Show';
 import { UserRole } from '../model/User';
 
 export class ShowBusiness{
@@ -55,5 +55,16 @@ export class ShowBusiness{
             })
         )
 
+    }
+
+    async getShowByWeekDay(weekDay: WeekDay){
+
+        if(!weekDay){
+            throw new NotFoundError("Não há shows nesse dia")
+        }
+
+        const result = await this.showDataBase.getShowsByWeekDay(weekDay);
+
+        return result
     }
 }

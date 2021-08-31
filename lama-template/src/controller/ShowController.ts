@@ -1,4 +1,4 @@
-import { ShowInputDTO } from './../model/Show';
+import { ShowInputDTO, WeekDay } from './../model/Show';
 import { Request, Response } from "express";
 import { Show } from "../model/Show";
 import { ShowBusiness } from '../business/ShowBusiness';
@@ -7,6 +7,7 @@ import { BandDataBase } from '../data/BandDataBase';
 import { Authenticator } from '../services/Authenticator';
 import { IdGenerator } from '../services/IdGenerator';
 import { setRandomFallback } from 'bcryptjs';
+import { servicesVersion } from 'typescript';
 
 export class ShowController{
     async createShow(
@@ -38,6 +39,27 @@ export class ShowController{
 
         } catch (error) {
             res.status(error.customErrorCode || 400).send({ error: error.message });
+        }
+    }
+
+    async getShowByWeek(req: Request, res: Response){
+        try {
+            const bweekDay = Show.toWeekDayEnum(req.query.weekDay as string)
+
+            const showBusiness = new ShowBusiness(
+                new ShowDataBase,
+                new BandDataBase,
+                new IdGenerator,
+                new Authenticator
+            )
+            const shows = await showBusiness.getShowByWeekDay(bweekDay)
+
+            res.status(200).send({shows})
+            
+        } catch (error) {
+            res.status(error.customErrorCode || 400).send({
+                message: error.message
+            })
         }
     }
 }

@@ -7,4 +7,4 @@ const showController = new ShowController();
 
 showRouter.post("/create", showController.createShow);
 
-// bandRouter.get("/bandDatails", bandController.getBandController);
+showRouter.get("/getShowWeek", showController.getShowByWeek);
