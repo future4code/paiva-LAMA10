@@ -1,0 +1,57 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+	"name": "Luna Liz",
+	"email": "lliz@lbn.com",
+	"password": "123456gh",
+   "role":"ADMIN"
+}
+
+###
+# @name login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+	"email": "lliz@lbn.com",
+	"password": "123456gh"
+}
+
+
+###
+
+
+POST http://localhost:3003/band/create
+Content-Type: application/json
+Authorization: {{login.response.body.token}}
+
+{
+	"name": "Overall Lama",
+	"musicGenre": "Eletrobrega",
+	"responsible":"Luna Liz"
+}
+
+
+
+###
+GET http://localhost:3003/band/bandDatails?name=Overall Lama
+Authorization: {{login.response.body.token}}
+
+###
+
+POST http://localhost:3003/show/create
+Content-Type: application/json
+Authorization: {{login.response.body.token}}
+
+{
+	"bandId": "3dd9230c-3a1e-4aab-a207-dd1888217b7d",
+	"weekDay": "SUNDAY",
+	"startTime": 21,
+	"endTime":22
+}
+
+###
+
+GET http://localhost:3003/show/getShowWeek?weekDay=SUNDAY
+Authorization: {{login.response.body.token}}
